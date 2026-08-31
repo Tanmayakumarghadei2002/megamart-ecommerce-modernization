@@ -102,6 +102,7 @@ resource "aws_eks_node_group" "megamart_nodes" {
   }
 
   instance_types = var.node_instance_types
+  ami_type       = "AL2_x86_64"
   capacity_type  = "ON_DEMAND"
   disk_size      = 50
 
