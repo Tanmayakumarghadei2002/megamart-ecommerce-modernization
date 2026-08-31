@@ -29,25 +29,25 @@ variable "vpc_cidr" {
 }
 
 variable "node_instance_types" {
-  description = "EC2 instance types for EKS managed worker nodes (cost-performance optimized)"
+  description = "EC2 instance types for EKS managed worker nodes (free-tier eligible)"
   type        = list(string)
-  default     = ["t3.medium", "m5.large"]
+  default     = ["t3.micro"]
 }
 
 variable "node_desired_size" {
   description = "Desired number of worker nodes at baseline"
   type        = number
-  default     = 3
+  default     = 2
 }
 
 variable "node_min_size" {
-  description = "Minimum number of worker nodes (Multi-AZ baseline)"
+  description = "Minimum number of worker nodes"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "node_max_size" {
   description = "Maximum number of worker nodes during flash sales"
   type        = number
-  default     = 10
+  default     = 4
 }
