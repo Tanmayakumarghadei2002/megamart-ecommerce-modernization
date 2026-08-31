@@ -1,0 +1,9 @@
+aws_region          = "us-east-1"
+environment         = "production"
+cluster_name        = "megamart-eks-cluster"
+kubernetes_version  = "1.30"
+vpc_cidr            = "10.0.0.0/16"
+node_instance_types = ["t3.medium", "m5.large"]
+node_desired_size   = 3
+node_min_size       = 2
+node_max_size       = 10

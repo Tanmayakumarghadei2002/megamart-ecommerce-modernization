@@ -1,0 +1,61 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: megamart-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus-stack
+    role: alert-rules
+spec:
+  groups:
+    - name: megamart-workloads.rules
+      rules:
+        - alert: HighHttpErrorRate
+          expr: sum(rate(catalog_requests_total{status_code=~"5.."}[5m]) + rate(order_requests_total{status_code=~"5.."}[5m])) / sum(rate(catalog_requests_total[5m]) + rate(order_requests_total[5m])) * 100 > 1
+          for: 3m
+          labels:
+            severity: critical
+            tier: application
+          annotations:
+            summary: "High HTTP 5xx error rate detected on MegaMart services (> 1%)"
+            description: "The 5xx HTTP error rate across Catalog or Order services is {{ $value | printf \"%.2f\" }}% over the last 5 minutes."
+
+        - alert: HighHttpLatencyP95
+          expr: histogram_quantile(0.95, sum(rate(catalog_request_duration_seconds_bucket[5m])) by (le)) > 0.5 or histogram_quantile(0.95, sum(rate(order_processing_duration_seconds_bucket{stage="total_checkout"}[5m])) by (le)) > 1.0
+          for: 3m
+          labels:
+            severity: warning
+            tier: application
+          annotations:
+            summary: "Elevated P95 latency detected"
+            description: "P95 response latency is exceeding SLA limits (Catalog > 500ms or Order Checkout > 1000ms)."
+
+        - alert: OrderCheckoutFailures
+          expr: sum(increase(order_failures_total[2m])) > 5
+          for: 1m
+          labels:
+            severity: critical
+            tier: business
+          annotations:
+            summary: "High volume of failed checkouts during flash sale"
+            description: "There were {{ $value }} failed checkout attempts in the last 2 minutes."
+
+        - alert: HPAMaxedOut
+          expr: kube_horizontalpodautoscaler_status_current_replicas{hpa=~".*service-hpa"} >= kube_horizontalpodautoscaler_spec_max_replicas{hpa=~".*service-hpa"}
+          for: 5m
+          labels:
+            severity: warning
+            tier: infrastructure
+          annotations:
+            summary: "HPA has reached maximum replica capacity"
+            description: "HPA {{ $labels.hpa }} in namespace {{ $labels.namespace }} has been running at maximum replica limit for >5 minutes."
+
+        - alert: PodCrashLooping
+          expr: rate(kube_pod_container_status_restarts_total[5m]) * 60 > 2
+          for: 2m
+          labels:
+            severity: critical
+            tier: infrastructure
+          annotations:
+            summary: "Pod is restarting frequently (CrashLoop)"
+            description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is crashlooping."

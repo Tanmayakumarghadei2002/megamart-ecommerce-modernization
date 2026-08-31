@@ -1,0 +1,43 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: catalog-service-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus-stack
+    app.kubernetes.io/name: catalog-service
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: catalog-service
+  namespaceSelector:
+    matchNames:
+      - megamart-prod
+      - megamart-staging
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+      scrapeTimeout: 10s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: order-service-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus-stack
+    app.kubernetes.io/name: order-service
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: order-service
+  namespaceSelector:
+    matchNames:
+      - megamart-prod
+      - megamart-staging
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+      scrapeTimeout: 10s

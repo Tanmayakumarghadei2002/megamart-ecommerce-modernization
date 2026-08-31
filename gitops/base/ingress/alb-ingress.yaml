@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: megamart-ingress
+  namespace: megamart-prod
+  labels:
+    app.kubernetes.io/name: megamart-ingress
+    app.kubernetes.io/part-of: megamart-ecommerce
+  annotations:
+    # AWS Load Balancer Controller configuration
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: "3"
+    alb.ingress.kubernetes.io/success-codes: "200,404"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/catalog
+            pathType: Prefix
+            backend:
+              service:
+                name: catalog-service
+                port:
+                  number: 80
+          - path: /api/orders
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: megamart-prod
+resources:
+  - alb-ingress.yaml

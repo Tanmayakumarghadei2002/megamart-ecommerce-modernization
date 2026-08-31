@@ -1,0 +1,112 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: megamart-catalog-service
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: megamart-ecommerce
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/megamart/megamart-ecommerce-gitops.git
+    targetRevision: HEAD
+    path: gitops/environments/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: megamart-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: megamart-order-service
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: megamart-ecommerce
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/megamart/megamart-ecommerce-gitops.git
+    targetRevision: HEAD
+    path: gitops/environments/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: megamart-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: megamart-cluster-autoscaler
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: megamart-infra
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/megamart/megamart-ecommerce-gitops.git
+    targetRevision: HEAD
+    path: gitops/base/cluster-autoscaler
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: megamart-ingress
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: megamart-infra
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/megamart/megamart-ecommerce-gitops.git
+    targetRevision: HEAD
+    path: gitops/base/ingress
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: megamart-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: megamart-monitoring
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: megamart-observability
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/megamart/megamart-ecommerce-gitops.git
+    targetRevision: HEAD
+    path: monitoring
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

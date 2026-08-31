@@ -1,0 +1,102 @@
+[
+  {
+    "id": "prod-101",
+    "name": "MegaMart Ultra HD Smart TV 55-inch",
+    "category": "Electronics",
+    "price": 499.99,
+    "inventory": 150,
+    "description": "4K HDR display with Dolby Vision and smart streaming apps built-in.",
+    "tags": ["tv", "4k", "electronics", "smart tv", "display"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-102",
+    "name": "SonicBlast Noise-Cancelling Wireless Headphones",
+    "category": "Electronics",
+    "price": 149.99,
+    "inventory": 320,
+    "description": "Active noise cancellation with 35-hour battery life and ultra-comfortable ear cushions.",
+    "tags": ["headphones", "audio", "wireless", "bluetooth", "electronics"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-103",
+    "name": "AeroGrip Ergonomic Wireless Mouse",
+    "category": "Electronics",
+    "price": 39.99,
+    "inventory": 500,
+    "description": "Precision optical sensor with dual-mode Bluetooth and 2.4GHz wireless connectivity.",
+    "tags": ["mouse", "accessories", "computer", "wireless"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-104",
+    "name": "QuantumCore Mechanical Gaming Keyboard",
+    "category": "Electronics",
+    "price": 89.99,
+    "inventory": 210,
+    "description": "RGB backlit mechanical keyboard with hot-swappable tactile switches.",
+    "tags": ["keyboard", "gaming", "rgb", "computer"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-105",
+    "name": "EcoFit Organic Cotton Crewneck T-Shirt",
+    "category": "Apparel",
+    "price": 24.99,
+    "inventory": 450,
+    "description": "100% certified organic cotton, breathable, pre-shrunk premium fabric.",
+    "tags": ["apparel", "clothing", "shirt", "organic", "cotton"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-106",
+    "name": "HydroShield All-Weather Windbreaker Jacket",
+    "category": "Apparel",
+    "price": 79.99,
+    "inventory": 180,
+    "description": "Waterproof and wind-resistant lightweight jacket with packable hood.",
+    "tags": ["jacket", "apparel", "outerwear", "weatherproof"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-107",
+    "name": "BaristaPro Espresso and Cappuccino Maker",
+    "category": "Home and Kitchen",
+    "price": 199.99,
+    "inventory": 95,
+    "description": "15-bar Italian pump with integrated milk frother wand and PID temperature control.",
+    "tags": ["coffee", "espresso", "kitchen", "appliances"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-108",
+    "name": "ChefMaster 8-Piece Stainless Steel Cookware Set",
+    "category": "Home and Kitchen",
+    "price": 129.99,
+    "inventory": 140,
+    "description": "Tri-ply clad stainless steel pots and pans with ergonomic stay-cool handles.",
+    "tags": ["cookware", "kitchen", "pots", "pans"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-109",
+    "name": "FlexForm High-Density Yoga Mat",
+    "category": "Fitness and Sports",
+    "price": 34.99,
+    "inventory": 275,
+    "description": "Non-slip textured surface with 6mm cushioning and carrying strap included.",
+    "tags": ["yoga", "fitness", "sports", "exercise", "mat"],
+    "in_stock": true
+  },
+  {
+    "id": "prod-110",
+    "name": "TrailRunner Stainless Steel Insulated Water Bottle 32oz",
+    "category": "Fitness and Sports",
+    "price": 22.99,
+    "inventory": 600,
+    "description": "Double-wall vacuum insulation keeps drinks ice cold for 24 hours or hot for 12 hours.",
+    "tags": ["bottle", "hydration", "fitness", "sports", "travel"],
+    "in_stock": true
+  }
+]
