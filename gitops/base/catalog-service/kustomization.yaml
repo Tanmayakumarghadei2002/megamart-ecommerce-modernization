@@ -1,14 +1,3 @@
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: catalog-service-pdb
-  namespace: megamart-prod
-spec:
-  minAvailable: 50%
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: catalog-service
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: megamart-prod
