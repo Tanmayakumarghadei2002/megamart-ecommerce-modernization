@@ -52,7 +52,7 @@ spec:
               app.kubernetes.io/name: order-service
       containers:
         - name: order-service
-          image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/megamart/order-service:v1.0.0
+          image: 227493789634.dkr.ecr.us-east-1.amazonaws.com/megamart/order-service:v1.0.0
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
