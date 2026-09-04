@@ -8,13 +8,13 @@ metadata:
     app.kubernetes.io/component: backend
     app.kubernetes.io/part-of: megamart-ecommerce
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 5
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 25%
-      maxUnavailable: 0
+      maxUnavailable: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: catalog-service
@@ -53,8 +53,8 @@ spec:
               app.kubernetes.io/name: catalog-service
       containers:
         - name: catalog-service
-          image: 227493789634.dkr.ecr.us-east-1.amazonaws.com/megamart/catalog-service:v1.0.0
-          imagePullPolicy: IfNotPresent
+          image: 227493789634.dkr.ecr.us-east-1.amazonaws.com/megamart/catalog-service:v1.0.1
+          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
