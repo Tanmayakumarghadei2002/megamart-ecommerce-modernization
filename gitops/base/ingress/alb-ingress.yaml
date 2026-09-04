@@ -18,6 +18,7 @@ metadata:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "3"
     alb.ingress.kubernetes.io/success-codes: "200,404"
 spec:
+  ingressClassName: alb
   rules:
     - http:
         paths:
