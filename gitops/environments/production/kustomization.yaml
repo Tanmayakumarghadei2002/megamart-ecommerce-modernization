@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: megamart-prod
 
 resources:
+  - namespace.yaml
   - ../../base/catalog-service
   - ../../base/order-service
   - ../../base/network-policies
